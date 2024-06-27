@@ -1,0 +1,114 @@
+import { log } from "console";
+
+let rl = require("readline-sync");
+
+
+export class produto{
+    nome: string
+    preco: number
+    marca: string
+    categoria: string
+    cor: string
+
+
+constructor(nome: string, preco: number, marca: string, categoria: string, cor: string, ){
+
+    this.nome = nome
+    this.preco = preco
+    this.marca = marca
+    this.categoria = categoria
+    this.cor = cor
+
+
+    };
+    getProduto(): void{
+        console.log(`Nome:${this.nome}; \nPreço: ${this.preco}; \nMarca: ${this.marca}; \nCategoria: ${this.categoria}; \nCor: ${this.cor}`);
+            }   
+    
+    setProduto(): void{
+        let nomeProduto = rl.question("Qual o nome do produto? ");
+        let precoProduto = rl.question("Qual o preço do produto? ");
+        let marcaProduto = rl.question("Qual a marca do produto? ");
+        let categoriaProduto = rl.question("Qual a categoria do produto? ");
+        let corProduto = rl.question("Qual a cor do produto? ");
+
+        this.nome = nomeProduto
+        this.preco = precoProduto
+        this.marca = marcaProduto
+        this.categoria = categoriaProduto
+        this.cor = corProduto
+
+      
+    }
+        };
+        let tv = new produto("TV", 4999, "LG", "Eletrônico", "Preto");
+        let notebook = new produto("Notebook", 5000, "Lenovo", "Eletrônico", "Cinza")
+        let celular = new produto("Celular", 1500, "Asus", "Eletrônico", "Preto+Vermelho")
+
+        
+
+        export class venda{
+            pdt: produto
+            quantidade: number
+            valorTotal: number
+            data: number
+            notaFiscal: string
+            estado: string
+            precoInicial: number
+            precoFinal: number
+        
+            constructor(pdt: produto, quantidade: number, valorTotal: number, data: number, notaFiscal: string, estado: string, precoInicial: number, precoFinal: number){
+                this.pdt = pdt
+                this.quantidade = quantidade
+                this.valorTotal = valorTotal
+                this.data = data
+                this.notaFiscal = notaFiscal
+                this.estado = estado
+                this.precoInicial = precoInicial
+                this.precoFinal = precoFinal
+            }
+            getVenda(): void{
+                console.log (`Produto:${this.pdt}; \nQuantidade: ${this.quantidade}; \nvalorTotal: ${this.valorTotal}; \n dataVenda: ${this.data}; \nNota fiscal: ${this.notaFiscal}; \nNota vendedor: ${this.estado}.`);
+            }
+            setVenda(): void{
+                let produtoVenda = rl.question("Qual o produto? ");
+                let quantidadeVenda = rl.question("Qual a quantidade do produto? ");
+                let valorTotalVenda = rl.question("Qual o valor total do produto? ");
+                let dataVenda = rl.question("Qual a data de venda do produto?");
+                let notaFiscalVenda = rl.question("Qual a nota fiscal do produto? ");
+                let estadoProdutoVenda = rl.question("Qual o estado do produto? ");
+                let precoInicialVenda = rl.question("Qual o preço de compra do produto? ");
+                let precoFinalVenda = rl.question("Qual o preço de venda do produto? ")
+        
+                this.pdt = produtoVenda;
+                this.quantidade = quantidadeVenda;
+                this.valorTotal = valorTotalVenda;
+                this.data = dataVenda;
+                this.notaFiscal = notaFiscalVenda;
+                this.estado = estadoProdutoVenda;
+                this.precoInicial = precoInicialVenda
+                this.precoFinal = precoFinalVenda
+                
+
+  
+
+                let final = (`${produtoFinal} possui ${this.quantidade} unidades.`)
+
+                console.log(${notebook}, ${this.quantidade})
+                console.log(${tv}, ${this.quantidade})
+                console.log(${celular}, ${this.quantidade})
+
+                let lucro = this.precoInicial - this.precoFinal
+                console.log(`O lucro de venda foi de R$${lucro}.`)
+            }
+
+        }
+
+        let produtoFinal = new produto ("", 0, "", "", "")
+        let vendaFinal = new venda(produtoFinal, 0, 0, 0, "", "", 0, 0)
+
+
+
+
+produtoFinal.setProduto()
+console.log(produtoFinal)
