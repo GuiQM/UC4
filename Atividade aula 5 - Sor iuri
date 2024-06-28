@@ -1,5 +1,3 @@
-import { log } from "console";
-
 let rl = require("readline-sync");
 
 
@@ -94,9 +92,9 @@ constructor(nome: string, preco: number, marca: string, categoria: string, cor: 
 
                 let final = (`${produtoFinal} possui ${this.quantidade} unidades.`)
 
-                console.log(${notebook}, ${this.quantidade})
-                console.log(${tv}, ${this.quantidade})
-                console.log(${celular}, ${this.quantidade})
+                console.log(`${notebook}, ${this.quantidade}`)
+                console.log(`${tv}, ${this.quantidade}`)
+                console.log(`${celular}, ${this.quantidade}`)
 
                 let lucro = this.precoInicial - this.precoFinal
                 console.log(`O lucro de venda foi de R$${lucro}.`)
