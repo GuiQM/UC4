@@ -1,0 +1,108 @@
+let rl = require('readline-sync');
+
+class Jogo {
+    titulo: string;
+    protected genero: string;
+    protected classificacaoEtaria: number;
+
+    constructor(titulo: string, genero: string, classificacaoEtaria: number) {
+        this.titulo = titulo;
+        this.genero = genero;
+        this.classificacaoEtaria = classificacaoEtaria;
+    }
+
+    getDetalhes(): void {
+        console.log(`Nome: ${this.titulo}, \nGênero: ${this.genero} \nClassificação: ${this.classificacaoEtaria}`);
+    }
+
+    setDetalhes(): void {
+        let novoTitulo = rl.question("Insira o nome do jogo: ");
+        let novoGenero = rl.question("Insira o gênero do jogo: ");
+        let novaClassificacao = parseInt(rl.question("Insira a classificação etária do jogo: "));
+
+        this.titulo = novoTitulo;
+        this.genero = novoGenero;
+        this.classificacaoEtaria = novaClassificacao;
+    }
+}
+
+let jogoNovo = new Jogo("Spider-Man", "Ação/Aventura", 12);
+
+class JogoEletronico extends Jogo {
+    protected plataforma: string;
+
+    constructor(titulo: string, genero: string, classificacaoEtaria: number, plataforma: string) {
+        super(titulo, genero, classificacaoEtaria);
+        this.plataforma = plataforma;
+    }
+
+    getDetalhes(): void {
+        console.log(`Nome do jogo: ${this.titulo}, \nGênero: ${this.genero}, \nClassificação Etária: ${this.classificacaoEtaria}, \nPlataforma: ${this.plataforma}`);
+    }
+
+    setDetalhes(): void {
+        let novoTituloEletro = rl.question("Insira o nome do jogo: ");
+        let novoGeneroEletro = rl.question("Insira o gênero do jogo: ");
+        let novaClassificacaoEletro = parseInt(rl.question("Insira a classificação etária do jogo: "));
+        let novaPlataformaEletro = rl.question("Será para qual plataforma? ");
+
+        this.titulo = novoTituloEletro;
+        this.genero = novoGeneroEletro;
+        this.classificacaoEtaria = novaClassificacaoEletro;
+        this.plataforma = novaPlataformaEletro;
+    }
+}
+
+let jogoNovoEletro = new JogoEletronico("Shrek 3°", "Aventura", 10, "PC");
+
+class JogoDeTabuleiro extends Jogo {
+    protected numeroDeJogadores: number;
+
+    constructor(titulo: string, genero: string, classificacaoEtaria: number, numeroDeJogadores: number) {
+        super(titulo, genero, classificacaoEtaria);
+        this.numeroDeJogadores = numeroDeJogadores;
+    }
+
+    getDetalhes(): void {
+        console.log(`Nome do jogo: ${this.titulo}, \nGênero: ${this.genero}, \nClassificação Etária: ${this.classificacaoEtaria}, \nNúmero de Jogadores: ${this.numeroDeJogadores}`);
+    }
+
+    setDetalhes(): void {
+        let novoTituloTabu = rl.question("Insira o nome do jogo: ");
+        let novoGeneroTabu = rl.question("Insira o gênero do jogo: ");
+        let novaClassificacaoTabu = parseInt(rl.question("Insira a classificação etária do jogo: "));
+        let novoNumeroDeJogadores = parseInt(rl.question("Insira o número de jogadores: "));
+
+        this.titulo = novoTituloTabu;
+        this.genero = novoGeneroTabu;
+        this.classificacaoEtaria = novaClassificacaoTabu;
+        this.numeroDeJogadores = novoNumeroDeJogadores;
+    }
+}
+
+let jogoNovoTabu = new JogoDeTabuleiro("Monopoly", "Estratégia", 8, 4);
+
+class BibliotecaDeJogos {
+    jogos: Jogo[] = [];
+
+    adicionarJogo(jogo: Jogo): void {
+        this.jogos.push(jogo);
+    }
+
+    removerJogo(titulo: string): void {
+        this.jogos = this.jogos.filter(jogos2 => jogos2.titulo !== titulo);
+    }
+
+    listarJogos(): void {
+        this.jogos.forEach(jogo => jogo.getDetalhes());
+    }
+}
+
+let biblioteca = new BibliotecaDeJogos();
+biblioteca.adicionarJogo(jogoNovo);
+biblioteca.adicionarJogo(jogoNovoEletro);
+biblioteca.adicionarJogo(jogoNovoTabu);
+
+biblioteca.removerJogo("Shrek 3°")
+
+biblioteca.listarJogos();
