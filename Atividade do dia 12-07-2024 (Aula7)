@@ -1,0 +1,141 @@
+let rl = require('readline-sync')
+
+
+//Cria a classe carro
+export class Carro{
+marca: string
+gasolina: number
+kml: number
+idDoCarro: number
+
+constructor(marca: string, gasolina: number, kml: number, idDoCarro: number){
+this.marca = marca
+this.gasolina = gasolina
+this.kml = kml
+this.idDoCarro = idDoCarro
+};
+
+//Mostra as informações do carro
+getCarro(): void{
+    console.log(`Marca do carro: ${this.marca}; \nQuilômetros: ${this.kml}; \nID: ${this.idDoCarro}.`)
+};
+
+//Insere as informações do carro
+public setCarro(): void{
+
+    let marcaDoCarro = rl.question("Qual a marca do carro? ")
+    let kmlDoCarro = rl.questionInt("Quantos KM/L o carro faz? ")
+    let idDoCarro = rl.questionInt("Qual o ID do carro? ")
+
+    this.marca = marcaDoCarro
+    this.kml = kmlDoCarro
+    this.idDoCarro = idDoCarro
+};
+
+//Faz com que o carro ande
+public Andar(distancia: number): void{
+
+    let distanciaPercorrida = (this.gasolina - (this.kml / distancia))
+    function pergunta(){
+let perguntaAcelerar = rl.question("Você deseja acelerar o carro? Escreva (S) para sim ou (N) para não: ")
+let perguntaAcelerarfinal = perguntaAcelerar.toLowerCase()
+
+if(perguntaAcelerarfinal == "s" && distanciaPercorrida != 0){
+console.log(`Você andou ${this.kml} Km.`);
+
+}else if(perguntaAcelerarfinal == "n") {
+    console.log(`Você não andou`);
+
+}else if(perguntaAcelerarfinal == "s" && distanciaPercorrida == 0){
+    console.log(`Primeiramente adicione gasolina.`)
+    
+}else if (perguntaAcelerar != "s" || perguntaAcelerar != "n") {
+        }
+    }
+    pergunta()
+    }
+
+
+//Indica o nível de gasolina atual do carro
+public obterGasolina(): string{
+    let fraseObterGasolina = (`O seu carro possui ${this.gasolina} de gasolina restante.`);
+    return (fraseObterGasolina);
+}
+
+//Adiciona gasolina ao carro
+public adicionarGasolina(): string{
+    let fraseAdicionarGasolina = rl.questionInt(`Quantos litros de gasolina deseja adicionar ao seu carro? `);
+    let fraseFinalAdicionarGasolina = (`Seu carro agora possui ${fraseAdicionarGasolina} litros de gasolina.`);
+    return (fraseFinalAdicionarGasolina);
+    }
+}
+
+let CarroUPD = new Carro ("", 0, 0, 0)
+
+CarroUPD.setCarro();
+CarroUPD.Andar(5)
+CarroUPD.getCarro();
+
+
+export class Pessoa{
+Nome: string;
+sobreNome: string;
+nomeDoPai: string;
+nomeDaMae: string;
+numeroRG: number;
+numeroCPF: number;
+dataDeNascimento: number;
+
+constructor(Nome: string, sobreNome: string, nomeDoPai: string, nomeDaMae: string, numeroRG: number, numeroCPF: number, dataDeNascimento: number){
+
+    this.Nome = Nome;
+    this.sobreNome = sobreNome;
+    this.nomeDoPai = nomeDoPai;
+    this.nomeDaMae = nomeDaMae;
+    this.numeroRG = numeroRG;
+    this.numeroCPF = numeroCPF;
+    this.dataDeNascimento = dataDeNascimento
+}
+
+public getDadosPessoa(): void{
+    (`Nome:${this.Nome}; \nSobre nome: ${this.sobreNome}, \nNome do pai: ${this.nomeDoPai}; \nNome da mãe: ${this.nomeDaMae}; \nRG: ${this.numeroRG}; \nCPF ${this.numeroCPF}; \nData de nascimento: ${this.dataDeNascimento}`)
+}
+
+public setDadosPessoa(): void{
+    let nomeUPD = rl.question("Qual o nome da pessoa? ");
+    let sobreNomeUPD = rl.question("Qual o sobre nome? ");
+    let nomeDoPaiUPD = rl.question("Qual o nome do pai? ");
+    let nomeDaMaeUPD = rl.question("Qual o nome da mae? ");
+    let numeroRGUPD = rl.questionInt("Qual o RG dessa pessoa? ");
+    let numeroCPFUPD = rl.questionInt("Qual o CPF? ");
+    let dataDeNascimentoUPD = rl.questionInt("Qual a data de nascimento dela? ");
+
+    this.Nome = nomeUPD;
+    this.sobreNome = sobreNomeUPD;
+    this.nomeDaMae = nomeDaMaeUPD;
+    this.nomeDoPai = nomeDoPaiUPD;
+    this.numeroRG = numeroRGUPD;
+    this.numeroCPF = numeroCPFUPD;
+    this.dataDeNascimento = dataDeNascimentoUPD;
+    }
+}
+
+
+
+export class GaragemDeCarro{
+    public carros: Carro[] = []
+
+    public adicionarCarro(carro: Carro): void{
+        if(this.carros.length < 10){
+            this.carros.push(carro)}
+            else{this.carros.splice(0,1), this.carros.push(carro)
+    }
+}
+        public removerCarro(removeCarro: number): void{
+            this.carros = this.carros.filter(carro => carro.idDoCarro !== removeCarro)
+        }
+    
+        public listarCarros(): void{
+            console.log(this.carros)
+        }
+}
